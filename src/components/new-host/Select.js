@@ -19,9 +19,10 @@ const useStyles = makeStyles((theme) => ({
 export default function SimpleSelect(props) {
   const classes = useStyles();
   const [age, setAge] = React.useState('');
-
   const handleChange = (event) => {
+    console.log(event);
     setAge(event.target.value);
+    props.func(event.target.value);
   };
 
   return (

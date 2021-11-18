@@ -15,6 +15,7 @@ const SignIn = () => {
     
     fetch(`http://localhost:3001/users/signIn/${userName}/${password}`)
       .then((res) => res.json())
+      .catch((err)=>{alert("error occured try again");console.log(err)})
       .then((data)=>{
          console.log(data);
          if(data.theUser.kind==1) 

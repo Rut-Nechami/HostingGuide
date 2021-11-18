@@ -5,7 +5,17 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import NativeSelects from './Select'
+import NativeSelects from './Select';
+import Badatz from './hechsherimImages/1.jpg';
+import Rubin from './hechsherimImages/2.jpg';
+import Machzikei from './hechsherimImages/3.jpg';
+import Landow from './hechsherimImages/4.jpg';
+import Sherit from './hechsherimImages/5.jpg';
+import HatamSofer from './hechsherimImages/6.jpg';
+import Agudas from './hechsherimImages/7.jpg';
+import BeitYosef from './hechsherimImages/9.jpg';
+
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -38,17 +48,22 @@ const MenuProps = {
 };
 
 const hechsherim = [
-  'gf',
-  'ff',
-  'tyt'
+  {name:'Badatz',image:Badatz},
+  {name:'Rubin',image:Rubin},
+  {name:'Machzikei',image:Machzikei},
+  {name:'Landow',image:Landow},
+  {name:'sherit',image:Sherit},
+  {name:'HatamSofer',image:HatamSofer},
+  {name:'Agudas',image:Agudas},
+  {name:'BeitYosef',image:BeitYosef},
 ];
 
-const religios = [
-    'religious',
-    'National Religious',
-    'orthodox',
-    'secular'
-  ];
+// const religios = [
+//     'religious',
+//     'National Religious',
+//     'orthodox',
+//     'secular'
+//   ];
 function getStyles(name, personName, theme) {
   return {
     fontWeight:
@@ -64,7 +79,10 @@ export default function MultipleSelect(props) {
   const [personName, setPersonName] = React.useState([]);
 
   const handleChange = (event) => {
+    console.log(event.target.value);
+    props.func(event.target.value);
     setPersonName(event.target.value);
+    console.log(personName);
   };
 
 
@@ -76,14 +94,16 @@ export default function MultipleSelect(props) {
           labelId="demo-mutiple-name-label"
           id="demo-mutiple-name"
           multiple
-          value={personName}
+           value={personName}
+          // value={personName.map((ev)=>(
+          //     <div>{ev}</div>))}
           onChange={handleChange}
           input={<Input />}
           MenuProps={MenuProps}
         >
           {hechsherim.map((name) => (
-            <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
-              {name}
+            <MenuItem key={name.name} value={name.name} style={getStyles(name.name, personName, theme)}>
+              <img src={name.image} width={50} height={25}/>
             </MenuItem>
           ))}
         </Select>

@@ -25,9 +25,9 @@ const Details = () => {
               },
             body: JSON.stringify({ phoneNumber,address,city,email })
         })
-            .then(() => {console.log("you added") })
+            .then((res) => {if (res.status==200) console.log("you added") })
             .catch((err) => {
-                console.log(err);
+                console.log("error occured"+err);
             })
     
     }
